@@ -8,4 +8,4 @@ class Config(object):
         elif config is not None and 'azure.resource_group' in config:
             self.resource_group_name = config['azure.resource_group']
         else:
-            self.resource_group_name = 'OceanProtocol'
+            self.resource_group_name = 'Nevermined'

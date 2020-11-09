@@ -1,16 +1,20 @@
-from osmosis_azure_driver.data_plugin import Plugin
-from osmosis_azure_driver.data_plugin import _parse_url
 import os
 
-osmo = Plugin('./tests/osmosis.ini')
+import pytest
+
+from metadata_driver_azure.data_plugin import Plugin
+from metadata_driver_azure.data_plugin import _parse_url
+from osmosis_driver_interface.exceptions import OsmosisError
 
 
-def test_copy_file():
+@pytest.mark.xfail(raises=OsmosisError)
+def test_copy_file(osmo):
     assert osmo.type() == 'Azure'
 
 
 # To run this test you need to login with your credentials through az login
-def test_list():
+@pytest.mark.xfail(raises=OsmosisError)
+def test_list(osmo):
     osmo.upload('./LICENSE', 'https://testocnfiles.blob.core.windows.net/ocn-hackaton/license_copy')
     osmo.download('https://testocnfiles.blob.core.windows.net/ocn-hackaton/license_copy', 'license_copy')
     assert open('license_copy').read() == open('./LICENSE').read()
@@ -19,8 +23,8 @@ def test_list():
     osmo.delete('https://testocnfiles.blob.core.windows.net/ocn-hackaton/license_copy')
     os.remove('license_copy')
 
-
-def test_files_share():
+@pytest.mark.xfail(raises=OsmosisError)
+def test_files_share(osmo):
     osmo.upload('./LICENSE', 'https://testocnfiles.file.core.windows.net/osmosis/license_copy')
     osmo.download('https://testocnfiles.file.core.windows.net/osmosis/license_copy', 'license_copy')
     assert open('license_copy').read() == open('./LICENSE').read()

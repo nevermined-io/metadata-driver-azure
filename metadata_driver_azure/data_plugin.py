@@ -10,8 +10,8 @@ from azure.mgmt.resource import ResourceManagementClient
 from azure.common.credentials import get_azure_cli_credentials, ServicePrincipalCredentials
 from osmosis_driver_interface.exceptions import OsmosisError
 from osmosis_driver_interface.data_plugin import AbstractPlugin
-from osmosis_azure_driver.utils import _parse_url
-from osmosis_azure_driver.config import Config
+from metadata_driver_azure.utils import _parse_url
+from metadata_driver_azure.config import Config
 
 class Plugin(AbstractPlugin):
 
@@ -30,9 +30,9 @@ class Plugin(AbstractPlugin):
         except Exception:
             logging.error('Credentials were not valid or were not found.')
             raise OsmosisError
-        # self.resource_group_name = config.get('osmosis', 'azure.resource_group')  # OceanProtocol
+        # self.resource_group_name = config.get('osmosis', 'azure.resource_group')
         self.config=Config(config)
-        self.resource_group_name = self.config.resource_group_name  # OceanProtocol
+        self.resource_group_name = self.config.resource_group_name
 
     @staticmethod
     def _login_azure_app_token(client_id=None, client_secret=None, tenant_id=None):

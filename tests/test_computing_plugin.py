@@ -1,8 +1,11 @@
-from osmosis_azure_driver.data_plugin import Plugin as DataPlugin
-from osmosis_azure_driver.computing_plugin import Plugin as ComputingPlugin
+import pytest
+
+from metadata_driver_azure.data_plugin import Plugin as DataPlugin
+from metadata_driver_azure.computing_plugin import Plugin as ComputingPlugin
 from osmosis_driver_interface.utils import parse_config
+from osmosis_driver_interface.exceptions import OsmosisError
 
-
+@pytest.mark.xfail(raises=OsmosisError)
 def test_compute_on_cloud():
     config = parse_config("./tests/osmosis.ini")
     osm_data = DataPlugin('./tests/osmosis.ini')

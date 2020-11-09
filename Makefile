@@ -53,7 +53,7 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 
 lint: ## check style with flake8
-	flake8 osmosis_azure_driver tests
+	flake8 metadata_driver_azure tests
 
 test: ## run tests quickly with the default Python
 	py.test
@@ -62,15 +62,15 @@ test-all: ## run tests on every Python version with tox
 	tox
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source osmosis_azure_driver -m pytest
+	coverage run --source metadata_driver_azure -m pytest
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
-	rm -f docs/osmosis_azure_driver.rst
+	rm -f docs/metadata_driver_azure.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ osmosis_azure_driver
+	sphinx-apidoc -o docs/ metadata_driver_azure
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html

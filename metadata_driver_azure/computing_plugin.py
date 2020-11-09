@@ -32,8 +32,8 @@ class Plugin(AbstractPlugin):
         except Exception:
             logging.error('Credentials were not valid or were not found.')
             raise OsmosisError
-        # self.resource_group_name = config.get('osmosis', 'azure.resource_group')  # OceanProtocol
-        self.resource_group_name = resource_group_name  # OceanProtocol
+        # self.resource_group_name = config.get('osmosis', 'azure.resource_group')
+        self.resource_group_name = resource_group_name
 
     @staticmethod
     def _login_azure_app_token(client_id=None, client_secret=None, tenant_id=None):
