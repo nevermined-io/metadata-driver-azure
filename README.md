@@ -1,13 +1,12 @@
-[![banner](https://raw.githubusercontent.com/oceanprotocol/art/master/github/repo-banner%402x.png)](https://oceanprotocol.com)
+[![banner](https://raw.githubusercontent.com/nevermined-io/assets/main/images/logo/banner_logo.png)](https://nevermined.io)
 
-# osmosis-azure-driver
+# Metadata Azure Driver
 
-> 💧 Osmosis Azure Data Driver Implementation
-> [oceanprotocol.com](https://oceanprotocol.com)
+> 💧 Metadata Azure Data Driver Implementation
+> [nevermined.io](https://nevermined.io)
 
-[![Build Status](https://travis-ci.com/oceanprotocol/osmosis-azure-driver.svg)](https://travis-ci.com/oceanprotocol/osmosis-azure-driver)
-[![PyPI](https://img.shields.io/pypi/v/osmosis-azure-driver.svg)](https://pypi.org/project/osmosis-azure-driver/)
-[![GitHub contributors](https://img.shields.io/github/contributors/oceanprotocol/osmosis-azure-driver.svg)](https://github.com/oceanprotocol/osmosis-azure-driver/graphs/contributors)
+[![PyPI](https://img.shields.io/pypi/v/nevermined-metadata-azure-driver.svg)](https://pypi.org/project/nevermined-metadata-azure-driver/)
+[![Python package](https://github.com/nevermined-io/metadata-azure-driver/workflows/Python%20package/badge.svg)](https://github.com/nevermined-io/metadata-azure-driver/actions)
 
 ---
 ## Table of Contents
@@ -30,7 +29,7 @@ AZURE_TENANT_ID
 AZURE_SUBSCRIPTION_ID
 ```
 
-To get information about how to create an App principal for Osmosis Azure driver in your Azure account, please
+To get information about how to create an App principal for Metadata Azure driver in your Azure account, please
 refer to Azure documentation. Links:
   - [#1](https://docs.microsoft.com/en-us/python/azure/python-sdk-azure-authenticate?view=azure-python)
   - [#2](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?toc=%2Fazure%2Fazure-resource-manager%2Ftoc.json&view=azure-cli-latest)
@@ -40,10 +39,6 @@ refer to Azure documentation. Links:
 At the moment there is only a first implementation for the data_plugin, but in the future is going to be an instance 
 for the computing plugin as well.
 
-## Code style
-
-The information about code style in python is documented in this two links [python-developer-guide](https://github.com/oceanprotocol/dev-ocean/blob/master/doc/development/python-developer-guide.md)
-and [python-style-guide](https://github.com/oceanprotocol/dev-ocean/blob/master/doc/development/python-style-guide.md).
     
 ## Testing
 
@@ -54,10 +49,17 @@ Our test use pytest framework.
 
 The `bumpversion.sh` script helps to bump the project version. You can execute the script using as first argument {major|minor|patch} to bump accordingly the version.
 
+## Attribution
+
+This project is based in the Ocean Protocol [osmosis-azure-driver](https://github.com/oceanprotocol/osmosis-azure-driver).
+It keeps the same Apache v2 License and adds some improvements. See [NOTICE file](NOTICE).
+
 ## License
 
 ```
-Copyright 2018 Ocean Protocol Foundation Ltd.
+Copyright 2020 Keyko GmbH
+This product includes software developed at
+BigchainDB GmbH and Ocean Protocol (https://www.oceanprotocol.com/)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -70,3 +72,4 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+```

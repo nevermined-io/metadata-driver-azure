@@ -11,12 +11,12 @@ with open('README.md') as readme_file:
 with open('HISTORY.md') as history_file:
     history = history_file.read()
 
-# Installed by pip install osmosis-azure-driver
+# Installed by pip install metadata-azure-driver
 # or pip install -e .
 install_requirements = [
     'coloredlogs',
     'azure==4.0.0',
-    'osmosis-driver-interface==0.0.6',
+    'nevermined-metadata-driver-interface==0.1.0',
 ]
 
 # Required to run setup.py:
@@ -31,7 +31,7 @@ test_requirements = [
     'tox',
 ]
 
-# Possibly required by developers of osmosis-azure-driver:
+# Possibly required by developers of metadata-azure-driver:
 dev_requirements = [
     'bumpversion',
     'pkginfo',
@@ -40,8 +40,8 @@ dev_requirements = [
 ]
 
 setup(
-    author="leucothia",
-    author_email='devops@oceanprotocol.com',
+    author="nevermined-io",
+    author_email='root@nevermined.io',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
@@ -50,7 +50,7 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
     ],
-    description="💧 Osmosis Azure Data Driver Implementation",
+    description="💧 Metadata Azure Data Driver Implementation",
     extras_require={
         'test': test_requirements,
         'dev': dev_requirements + test_requirements,
@@ -60,13 +60,13 @@ setup(
     long_description=readme,
     long_description_content_type="text/markdown",
     include_package_data=True,
-    keywords='osmosis-azure-driver',
-    name='osmosis-azure-driver',
-    packages=find_packages(include=['osmosis_azure_driver']),
+    keywords='nevermined-metadata-azure-driver',
+    name='nevermined-metadata-azure-driver',
+    packages=find_packages(include=['metadata_driver_azure']),
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
-    url='https://github.com/oceanprotocol/osmosis-azure-driver',
-    version='0.0.4',
+    url='https://github.com/nevermined-io/metadata-driver-azure',
+    version='0.1.0',
     zip_safe=False,
 )

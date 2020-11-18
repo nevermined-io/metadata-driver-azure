@@ -8,10 +8,10 @@ from azure.common.cloud import get_cli_active_cloud
 from azure.mgmt.storage import StorageManagementClient
 from azure.mgmt.resource import ResourceManagementClient
 from azure.common.credentials import get_azure_cli_credentials, ServicePrincipalCredentials
-from osmosis_driver_interface.exceptions import OsmosisError
-from osmosis_driver_interface.data_plugin import AbstractPlugin
-from osmosis_azure_driver.utils import _parse_url
-from osmosis_azure_driver.config import Config
+from metadata_driver_interface.exceptions import DriverError
+from metadata_driver_interface.data_plugin import AbstractPlugin
+from metadata_driver_azure.utils import _parse_url
+from metadata_driver_azure.config import Config
 
 class Plugin(AbstractPlugin):
 
@@ -29,10 +29,9 @@ class Plugin(AbstractPlugin):
             self.storage_client = StorageManagementClient(credentials, subscription_id)
         except Exception:
             logging.error('Credentials were not valid or were not found.')
-            raise OsmosisError
-        # self.resource_group_name = config.get('osmosis', 'azure.resource_group')  # OceanProtocol
+            raise DriverError
         self.config=Config(config)
-        self.resource_group_name = self.config.resource_group_name  # OceanProtocol
+        self.resource_group_name = self.config.resource_group_name
 
     @staticmethod
     def _login_azure_app_token(client_id=None, client_secret=None, tenant_id=None):
@@ -69,7 +68,7 @@ class Plugin(AbstractPlugin):
              local_file(str): The path of the file to be copied.
              remote_file(str): The destination path where the file is going to be allocated.
          Raises:
-             :exc:`~..OsmosisError`: if the file is not uploaded correctly.
+             :exc:`~..DriverError`: if the file is not uploaded correctly.
         """
         return self.copy(local_file, remote_file)
 
@@ -79,7 +78,7 @@ class Plugin(AbstractPlugin):
              remote_file(str): The path of the file to be copied.
              local_file(str): The destination path where the file is going to be allocated.
          Raises:
-             :exc:`~..OsmosisError`: if the file is not downloaded correctly.
+             :exc:`~..DriverError`: if the file is not downloaded correctly.
         """
         return self.copy(remote_file, local_file)
 
@@ -146,12 +145,12 @@ class Plugin(AbstractPlugin):
          Args:
              remote_file(str): The path of the file to be deleted.
          Raises:
-             :exc:`~..OsmosisError`: if the file is not uploaded correctly.
+             :exc:`~..DriverError`: if the file is not uploaded correctly.
         """
         if 'core.windows.net' not in remote_file:
             self.logger.error("Source or destination must be a azure storage url (format "
                               "https://myaccount.blob.core.windows.net/mycontainer/myblob")
-            raise OsmosisError
+            raise DriverError
         parse_url = _parse_url(remote_file)
         key = self.storage_client.storage_accounts.list_keys(self.resource_group_name, parse_url.account).keys[0].value
         if parse_url.file_type == 'blob':
@@ -169,12 +168,12 @@ class Plugin(AbstractPlugin):
              source_path(str): The path of the file to be copied.
              dest_path(str): The destination path where the file is going to be allocated.
          Raises:
-             :exc:`~..OsmosisError`: if the file is not uploaded correctly.
+             :exc:`~..DriverError`: if the file is not uploaded correctly.
         """
         if 'core.windows.net' not in source_path and 'core.windows.net' not in dest_path:
             self.logger.error("Source or destination must be a azure storage url (format "
                               "https://myaccount.blob.core.windows.net/mycontainer/myblob")
-            raise OsmosisError
+            raise DriverError
 
         # Check if source exists and can read
         if 'core.windows.net' in source_path:

@@ -1,32 +1,36 @@
-from osmosis_azure_driver.data_plugin import Plugin
-from osmosis_azure_driver.data_plugin import _parse_url
 import os
 
-osmo = Plugin('./tests/osmosis.ini')
+import pytest
+
+from metadata_driver_azure.data_plugin import Plugin
+from metadata_driver_azure.data_plugin import _parse_url
+from metadata_driver_interface.exceptions import DriverError
 
 
-def test_copy_file():
+@pytest.mark.xfail(raises=DriverError)
+def test_copy_file(osmo):
     assert osmo.type() == 'Azure'
 
 
 # To run this test you need to login with your credentials through az login
-def test_list():
-    osmo.upload('./LICENSE', 'https://testocnfiles.blob.core.windows.net/ocn-hackaton/license_copy')
-    osmo.download('https://testocnfiles.blob.core.windows.net/ocn-hackaton/license_copy', 'license_copy')
+@pytest.mark.xfail(raises=DriverError)
+def test_list(osmo):
+    osmo.upload('./LICENSE', 'https://testocnfiles.blob.core.windows.net/metadata-driver/license_copy')
+    osmo.download('https://testocnfiles.blob.core.windows.net/metadata-driver/license_copy', 'license_copy')
     assert open('license_copy').read() == open('./LICENSE').read()
-    assert 'license_copy' in osmo.list('ocn-hackaton', True, 'testocnfiles')
-    assert osmo.generate_url('https://testocnfiles.blob.core.windows.net/ocn-hackaton/license_copy')
-    osmo.delete('https://testocnfiles.blob.core.windows.net/ocn-hackaton/license_copy')
+    assert 'license_copy' in osmo.list('metadata-driver', True, 'testocnfiles')
+    assert osmo.generate_url('https://testocnfiles.blob.core.windows.net/metadata-driver/license_copy')
+    osmo.delete('https://testocnfiles.blob.core.windows.net/metadata-driver/license_copy')
     os.remove('license_copy')
 
-
-def test_files_share():
-    osmo.upload('./LICENSE', 'https://testocnfiles.file.core.windows.net/osmosis/license_copy')
-    osmo.download('https://testocnfiles.file.core.windows.net/osmosis/license_copy', 'license_copy')
+@pytest.mark.xfail(raises=DriverError)
+def test_files_share(osmo):
+    osmo.upload('./LICENSE', 'https://testocnfiles.file.core.windows.net/metadata-driver/license_copy')
+    osmo.download('https://testocnfiles.file.core.windows.net/metadata-driver/license_copy', 'license_copy')
     assert open('license_copy').read() == open('./LICENSE').read()
-    assert osmo.generate_url('https://testocnfiles.file.core.windows.net/osmosis/license_copy')
-    assert 'license_copy' in osmo.list('osmosis', False, 'testocnfiles')
-    osmo.delete('https://testocnfiles.file.core.windows.net/osmosis/license_copy')
+    assert osmo.generate_url('https://testocnfiles.file.core.windows.net/metadata-driver/license_copy')
+    assert 'license_copy' in osmo.list('metadata-driver', False, 'testocnfiles')
+    osmo.delete('https://testocnfiles.file.core.windows.net/metadata-driver/license_copy')
     os.remove('license_copy')
 
 
