@@ -29,7 +29,7 @@ AZURE_TENANT_ID
 AZURE_SUBSCRIPTION_ID
 ```
 
-To get information about how to create an App principal for Osmosis Azure driver in your Azure account, please
+To get information about how to create an App principal for Metadata Azure driver in your Azure account, please
 refer to Azure documentation. Links:
   - [#1](https://docs.microsoft.com/en-us/python/azure/python-sdk-azure-authenticate?view=azure-python)
   - [#2](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?toc=%2Fazure%2Fazure-resource-manager%2Ftoc.json&view=azure-cli-latest)

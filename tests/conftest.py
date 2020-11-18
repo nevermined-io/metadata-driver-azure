@@ -5,4 +5,4 @@ from metadata_driver_azure.data_plugin import Plugin
 
 @pytest.fixture
 def osmo():
-    return Plugin('./tests/osmosis.ini')
+    return Plugin('./tests/config.ini')

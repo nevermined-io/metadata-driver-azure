@@ -2,14 +2,14 @@ import pytest
 
 from metadata_driver_azure.data_plugin import Plugin as DataPlugin
 from metadata_driver_azure.computing_plugin import Plugin as ComputingPlugin
-from osmosis_driver_interface.utils import parse_config
-from osmosis_driver_interface.exceptions import OsmosisError
+from metadata_driver_interface.utils import parse_config
+from metadata_driver_interface.exceptions import DriverError
 
-@pytest.mark.xfail(raises=OsmosisError)
+@pytest.mark.xfail(raises=DriverError)
 def test_compute_on_cloud():
-    config = parse_config("./tests/osmosis.ini")
-    osm_data = DataPlugin('./tests/osmosis.ini')
-    osm_computing = ComputingPlugin('./tests/osmosis.ini')
+    config = parse_config("./tests/config.ini")
+    osm_data = DataPlugin('./tests/config.ini')
+    osm_computing = ComputingPlugin('./tests/config.ini')
     elements_before_compute = len(osm_data.list(config.get('azure.share.output'),
                                                 False,
                                                 config.get('azure.account.name')))

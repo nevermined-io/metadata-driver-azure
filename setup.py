@@ -11,12 +11,12 @@ with open('README.md') as readme_file:
 with open('HISTORY.md') as history_file:
     history = history_file.read()
 
-# Installed by pip install osmosis-azure-driver
+# Installed by pip install metadata-azure-driver
 # or pip install -e .
 install_requirements = [
     'coloredlogs',
     'azure==4.0.0',
-    'osmosis-driver-interface==0.0.6',
+    'nevermined-metadata-driver-interface==0.1.0',
 ]
 
 # Required to run setup.py:
@@ -31,7 +31,7 @@ test_requirements = [
     'tox',
 ]
 
-# Possibly required by developers of osmosis-azure-driver:
+# Possibly required by developers of metadata-azure-driver:
 dev_requirements = [
     'bumpversion',
     'pkginfo',
@@ -67,6 +67,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/nevermined-io/metadata-driver-azure',
-    version='0.0.4',
+    version='0.1.0',
     zip_safe=False,
 )

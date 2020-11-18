@@ -12,6 +12,6 @@ def _parse_url(url):
     file = url[8:].split('/')[-1]
     # if account != self.account:
     #     self.logger.error('This url has a wrong account.')
-    #     raise OsmosisError
+    #     raise DriverError
 
     return azure_parameters(account, file_type, container_or_share_name, path, file)

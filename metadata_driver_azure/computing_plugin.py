@@ -11,8 +11,8 @@ from azure.mgmt.containerinstance.models import (ContainerGroup, Container, Reso
                                                  AzureFileVolume,
                                                  ContainerGroupRestartPolicy)
 from azure.mgmt.resource import ResourceManagementClient
-from osmosis_driver_interface.computing_plugin import AbstractPlugin
-from osmosis_driver_interface.exceptions import OsmosisError
+from metadata_driver_interface.computing_plugin import AbstractPlugin
+from metadata_driver_interface.exceptions import DriverError
 
 
 class Plugin(AbstractPlugin):
@@ -31,8 +31,7 @@ class Plugin(AbstractPlugin):
             self.client = ContainerInstanceManagementClient(credentials, subscription_id)
         except Exception:
             logging.error('Credentials were not valid or were not found.')
-            raise OsmosisError
-        # self.resource_group_name = config.get('osmosis', 'azure.resource_group')
+            raise DriverError
         self.resource_group_name = resource_group_name
 
     @staticmethod
