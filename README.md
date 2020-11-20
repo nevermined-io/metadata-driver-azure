@@ -6,7 +6,7 @@
 > [nevermined.io](https://nevermined.io)
 
 [![PyPI](https://img.shields.io/pypi/v/nevermined-metadata-azure-driver.svg)](https://pypi.org/project/nevermined-metadata-azure-driver/)
-[![Python package](https://github.com/nevermined-io/metadata-azure-driver/workflows/Python%20package/badge.svg)](https://github.com/nevermined-io/metadata-azure-driver/actions)
+![Python package](https://github.com/nevermined-io/metadata-driver-azure/workflows/Python%20package/badge.svg)
 
 ---
 ## Table of Contents
